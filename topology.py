@@ -1,5 +1,3 @@
-from mininet.net import Mininet
-from mininet.node import RemoteController
 from mininet.topo import Topo
 
 
@@ -26,40 +24,29 @@ class MyTopo(Topo):
         s8 = self.addSwitch('s8')
 
         # Links
-        self.addLink(h1, s1)
-        self.addLink(h2, s2)
-        self.addLink(h3, s3)
-        self.addLink(h4, s4)
-        self.addLink(h5, s5)
-        self.addLink(h6, s6)
-        self.addLink(h7, s7)
-        self.addLink(h8, s8)
+        self.addLink(h1, s1, bw=1000, delay='1ms')
+        self.addLink(h2, s2, bw=1000, delay='1ms')
+        self.addLink(h3, s3, bw=1000, delay='1ms')
+        self.addLink(h4, s4, bw=1000, delay='1ms')
+        self.addLink(h5, s5, bw=1000, delay='1ms')
+        self.addLink(h6, s6, bw=1000, delay='1ms')
+        self.addLink(h7, s7, bw=1000, delay='1ms')
+        self.addLink(h8, s8, bw=1000, delay='1ms')
 
-        self.addLink(s1, s8)
-        self.addLink(s3, s8)
-        self.addLink(s6, s8)
-        self.addLink(s7, s8)
-        self.addLink(s1, s3)
-        self.addLink(s6, s3)
-        self.addLink(s4, s3)
-        self.addLink(s6, s5)
-        self.addLink(s2, s5)
-        self.addLink(s4, s5)
-        self.addLink(s7, s5)
-        self.addLink(s2, s4)
-        self.addLink(s7, s4)
-        self.addLink(s2, s7)
+        self.addLink(s1, s8, bw=1000, delay='1ms')
+        self.addLink(s3, s8, bw=1000, delay='1ms')
+        self.addLink(s6, s8, bw=1000, delay='1ms')
+        self.addLink(s7, s8, bw=1000, delay='1ms')
+        self.addLink(s1, s3, bw=1000, delay='1ms')
+        self.addLink(s6, s3, bw=1000, delay='1ms')
+        self.addLink(s4, s3, bw=1000, delay='1ms')
+        self.addLink(s6, s5, bw=1000, delay='1ms')
+        self.addLink(s2, s5, bw=1000, delay='1ms')
+        self.addLink(s4, s5, bw=1000, delay='1ms')
+        self.addLink(s7, s5, bw=1000, delay='1ms')
+        self.addLink(s2, s4, bw=1000, delay='1ms')
+        self.addLink(s7, s4, bw=1000, delay='1ms')
+        self.addLink(s2, s7, bw=1000, delay='1ms')
 
 
-if __name__ == '__main__':
-    topo = MyTopo()
-    net = Mininet(topo=topo, controller=RemoteController)
-
-    # Start the network with the Ryu controller
-    net.start()
-
-    # Perform some actions
-    net.pingAll()
-
-    # Stop the network
-    # net.stop()
+topos = {'mytopo': (lambda: MyTopo())}
